@@ -41,7 +41,10 @@ def load_graph() -> nx.DiGraph:
 
 
 def calc_price(edge_type: int, dist: float, payload: float):
-    return cfg.type_info[edge_type].km_price * dist * (payload // cfg.type_info[edge_type].capacity + 1)
+    if payload != 0:
+        return cfg.type_info[edge_type].km_price * dist * (payload // cfg.type_info[edge_type].capacity + 1)
+    else:
+        return 0
 
 
 def draw_price_function(edge_type, dist, max_payload):
